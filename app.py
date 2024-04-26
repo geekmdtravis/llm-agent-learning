@@ -1,7 +1,20 @@
 from langchain_community.chat_models import ChatOllama
+from langchain.prompts.prompt import PromptTemplate
+from langchain.chains import LLMChain
+
+print("Launching LLM Agent Learning Project")
 
 llm = ChatOllama(model="llama3:instruct", temperature=0)
-print("hello, attempting to run my LLM")
-#response = llm.invoke("write a react-redux tool, using typescript, that calculates mean arterial blood pressure from systolic and diastolic blood pressures. it should use functional and not class components, and a newer version of redux and use slices")
-response = llm.invoke("Please write a sql script that gets vital signs for a given patient by their PID ")
-print(response.content)
+summary_template = """
+Given the information {information} about a person I want you to create:
+1. A short summary
+2. Two interesting facts about them
+"""
+
+summary_prompt_template = PromptTemplate(input_variables=["information"], template=summary_template)
+
+chain = LLMChain(llm=llm, prompt=summary_prompt_template)
+
+res = chain.invoke(input={"information": "joe is a really cool guy that'd 33 yrs old"})
+
+print(res)
