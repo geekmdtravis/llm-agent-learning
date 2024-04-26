@@ -1,6 +1,6 @@
 from langchain_community.chat_models import ChatOllama
 from langchain.prompts.prompt import PromptTemplate
-from langchain.chains import LLMChain
+from langchain.chains.llm import LLMChain
 
 print("Launching LLM Agent Learning Project")
 
@@ -17,4 +17,4 @@ chain = LLMChain(llm=llm, prompt=summary_prompt_template)
 
 res = chain.invoke(input={"information": "joe is a really cool guy that'd 33 yrs old"})
 
-print(res)
+print(res['text'])
