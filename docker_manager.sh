@@ -13,7 +13,7 @@ build_image() {
 # Function to run the Docker container with local mounting
 run_container() {
     echo "Running Docker container..."
-    docker run -it -p 8000:8000 -v $(pwd):/app $APP_NAME
+    docker run --network="host" -it -p 8000:8000 -v $(pwd):/app $APP_NAME
     echo "Container is running."
 }
 

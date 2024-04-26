@@ -15,7 +15,6 @@ EXPOSE 8000
 
 # Define environment variables
 ENV NAME Agent
-ENV LLM_URL "http://localhost:11434/"
 
 # Command to run when the container starts
 CMD ["python", "app.py"]
